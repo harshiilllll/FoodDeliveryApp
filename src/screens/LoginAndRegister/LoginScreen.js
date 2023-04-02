@@ -1,5 +1,9 @@
 import React, { useState } from "react";
+import { StatusBar } from "expo-status-bar";
+import logo from "../../../assets/logo.png";
+
 import {
+  Image,
   StyleSheet,
   Text,
   TextInput,
@@ -17,7 +21,11 @@ const LoginScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Sign In</Text>
+      <StatusBar style="dark" />
+
+      <Image className="h-40 w-40 mb-5 rounded-2xl" source={logo} />
+
+      <Text className="text-green-900 text-4xl font-medium mb-2">Log In</Text>
       <View style={styles.inputout}>
         <FontAwesome5 name="user" size={22} color="#555" />
         <TextInput style={styles.input} placeholder="Email" />
