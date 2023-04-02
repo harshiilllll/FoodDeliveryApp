@@ -22,8 +22,7 @@ import FeaturedRow from "../components/FeaturedRow";
 const HomeScreen = () => {
   const user = true;
   return (
-    <SafeAreaView>
-      <View>
+      <View style={{flex:1}}>
         <StatusBar style="dark" />
 
         {/* HEADER  */}
@@ -57,14 +56,26 @@ const HomeScreen = () => {
         </View>
 
         {/* MIDDLE SECTION */}
-        <View className="px-4">
+        <View className="px-4" style={{flex:1}}>
           <Search />
 
-          <ScrollView showsVerticalScrollIndicator={false}>
+          <ScrollView showsVerticalScrollIndicator={false} style={{flex:1}}>
             <Categories />
-            <Slider />
             <FeaturedRow title="Featured" description="Paid placements from our partners" />
+            <Slider />
             <FeaturedRow title="Tasty Discounts" description="Everyone's been enjoying these juicy discounts!" />
+            <FeaturedRow title="Offers Near You" description="Why not support your local restaurant tonight!" />
+            <FeaturedRow title="Offers Near You" description="Why not support your local restaurant tonight!" />
+            <FeaturedRow title="Offers Near You" description="Why not support your local restaurant tonight!" />
+            <FeaturedRow title="Offers Near You" description="Why not support your local restaurant tonight!" />
+            <FeaturedRow title="Offers Near You" description="Why not support your local restaurant tonight!" />
+            <FeaturedRow title="Offers Near You" description="Why not support your local restaurant tonight!" />
+            <FeaturedRow title="Offers Near You" description="Why not support your local restaurant tonight!" />
+            <FeaturedRow title="Offers Near You" description="Why not support your local restaurant tonight!" />
+            <FeaturedRow title="Offers Near You" description="Why not support your local restaurant tonight!" />
+            <FeaturedRow title="Offers Near You" description="Why not support your local restaurant tonight!" />
+            <FeaturedRow title="Offers Near You" description="Why not support your local restaurant tonight!" />
+            <FeaturedRow title="Offers Near You" description="Why not support your local restaurant tonight!" />
             <FeaturedRow title="Offers Near You" description="Why not support your local restaurant tonight!" />
           </ScrollView>
         </View>
@@ -72,7 +83,7 @@ const HomeScreen = () => {
         {/* FOOTER */}
         {/* <View
           style={{ elevation: 1 }}
-          className="flex flex-row items-center justify-between bg-[#126c6b] absolute bottom-0 left-0 right-0 -mb-10 py-6 px-6"
+          className="flex flex-row items-center justify-between bg-[#126c6b] absolute bottom-10 left-0 right-0 -mb-10 py-6 px-6"
         >
           <TouchableOpacity>
             <Feather name="home" size={28} color="#F7F7F7" />
@@ -95,7 +106,6 @@ const HomeScreen = () => {
           </TouchableOpacity>
         </View> */}
       </View>
-    </SafeAreaView>
   );
 };
 
