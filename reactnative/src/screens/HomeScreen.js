@@ -9,7 +9,7 @@ import Search from "../components/Search";
 import { FontAwesome5 } from "@expo/vector-icons";
 import FeaturedRow from "../components/FeaturedRow";
 import { useNavigation } from "@react-navigation/native";
-// import sanityClient from "../../sanity";
+import sanityClient from "../../sanity";
 
 const HomeScreen = () => {
   const user = true;
