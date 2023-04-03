@@ -5,7 +5,7 @@ import { TouchableOpacity } from "react-native";
 
 const Search = () => {
   return (
-    <View className="rounded flex flex-row items-center w-full relative pb-3">
+    <View className="rounded flex flex-row items-center w-full relative mb-3">
       <TextInput
         placeholder="Find the best food around you"
         keyboardType="default"

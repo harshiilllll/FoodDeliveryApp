@@ -105,7 +105,7 @@ const FeaturedRow = ({ id, title, description }) => {
             longitude={item.longitude}
           />
         )}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item._id}
         className="mt-4"
       />
     </View>
