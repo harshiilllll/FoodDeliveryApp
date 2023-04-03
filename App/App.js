@@ -4,6 +4,7 @@ import WelcomeScreen from "./src/screens/LoginAndRegister/WelcomeScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./src/screens/HomeScreen";
+import 'react-native-url-polyfill/auto';
 
 const Stack = createNativeStackNavigator();
 

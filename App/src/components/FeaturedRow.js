@@ -1,8 +1,9 @@
 import { View, Text, ScrollView, Image } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Feather } from "@expo/vector-icons";
 import RestaurantCard from "./RestaurantCard";
 import { FlatList } from "react-native";
+import sanityClient, { urlFor } from "../../sanity";
 
 const restos = [
   {
@@ -46,7 +47,33 @@ const restos = [
   },
 ];
 
-const FeaturedRow = ({ title, description }) => {
+const FeaturedRow = ({ id, title, description }) => {
+  const [restaurants, setRestaurants] = useState([]);
+
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `
+      *[_type=="featured" && _id==$id]{
+        ...,
+        restaurants[]->{
+          ...,
+          dishes[]->,
+          type-> {
+            title
+          }
+        }
+      }[0]
+    `,
+        { id }
+      )
+      .then((data) => {
+        setRestaurants(data?.restaurants);
+      });
+  }, []);
+
+  console.log(restaurants);
+
   return (
     <View className="mt-3">
       <View className="flex-row justify-between">
@@ -62,18 +89,18 @@ const FeaturedRow = ({ title, description }) => {
       </ScrollView> */}
 
       <FlatList
-        data={restos}
+        data={restaurants}
         showsHorizontalScrollIndicator={false}
         ItemSeparatorComponent={() => <View style={{ width: 5 }} />}
         horizontal
         renderItem={({ item }) => (
           <RestaurantCard
-            title={item.title}
+            title={item.name}
             short_description={item.short_description}
             rating={item.rating}
-            genre={item.genre}
+            genre={item.type.title}
             address={item.address}
-            imgUrl={item.imgUrl}
+            imgUrl={urlFor(item.image).url()}
             latitude={item.latitude}
             longitude={item.longitude}
           />

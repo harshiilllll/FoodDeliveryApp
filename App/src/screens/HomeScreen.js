@@ -23,11 +23,25 @@ const HomeScreen = () => {
     });
   }, []);
 
-  // useEffect(() => {
-  //   sanityClient.fetch(`*[_type=="restaurant"]`).then((data) => {
-  //     setFeaturedCategories(data);
-  //   });
-  // }, []);
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `
+      *[_type=="featured"]{
+        ...,
+        restaurants[]->{
+          ...,
+          dishes[]->
+        }
+      }
+    `
+      )
+      .then((data) => {
+        setFeaturedCategories(data);
+      });
+  }, []);
+
+  console.log(featuredCategories);
 
   return (
     <View style={{ flex: 1 }}>
@@ -69,67 +83,18 @@ const HomeScreen = () => {
 
         <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1 }}>
           <Categories />
-          <FeaturedRow
-            title="Featured"
-            description="Paid placements from our partners"
-          />
+
+          {featuredCategories?.map((item) => {
+            return (
+              <FeaturedRow
+                key={item._id}
+                title={item.name}
+                description={item.short_description}
+                id={item._id}
+              />
+            );
+          })}
           <Slider />
-          <FeaturedRow
-            title="Tasty Discounts"
-            description="Everyone's been enjoying these juicy discounts!"
-          />
-          <FeaturedRow
-            title="Offers Near You"
-            description="Why not support your local restaurant tonight!"
-          />
-          <FeaturedRow
-            title="Offers Near You"
-            description="Why not support your local restaurant tonight!"
-          />
-          <FeaturedRow
-            title="Offers Near You"
-            description="Why not support your local restaurant tonight!"
-          />
-          <FeaturedRow
-            title="Offers Near You"
-            description="Why not support your local restaurant tonight!"
-          />
-          <FeaturedRow
-            title="Offers Near You"
-            description="Why not support your local restaurant tonight!"
-          />
-          <FeaturedRow
-            title="Offers Near You"
-            description="Why not support your local restaurant tonight!"
-          />
-          <FeaturedRow
-            title="Offers Near You"
-            description="Why not support your local restaurant tonight!"
-          />
-          <FeaturedRow
-            title="Offers Near You"
-            description="Why not support your local restaurant tonight!"
-          />
-          <FeaturedRow
-            title="Offers Near You"
-            description="Why not support your local restaurant tonight!"
-          />
-          <FeaturedRow
-            title="Offers Near You"
-            description="Why not support your local restaurant tonight!"
-          />
-          <FeaturedRow
-            title="Offers Near You"
-            description="Why not support your local restaurant tonight!"
-          />
-          <FeaturedRow
-            title="Offers Near You"
-            description="Why not support your local restaurant tonight!"
-          />
-          <FeaturedRow
-            title="Offers Near You"
-            description="Why not support your local restaurant tonight!"
-          />
         </ScrollView>
       </View>
 

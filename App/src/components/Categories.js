@@ -1,12 +1,8 @@
-import {
-  View,
-  Text,
-  FlatList,
-  TouchableOpacity,
-} from "react-native";
-import React from "react";
+import { View, Text, FlatList, TouchableOpacity } from "react-native";
+import React, { useEffect, useState } from "react";
 import { Feather } from "@expo/vector-icons";
 import CategoryCard from "./CategoryCard";
+import sanityClient, { urlFor } from "../../sanity";
 
 const DATA = [
   {
@@ -42,6 +38,27 @@ const DATA = [
 ];
 
 const Categories = () => {
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    sanityClient
+      .fetch(
+        `
+      *[_type == "category"]{
+        title,
+        description,
+        image,
+        _id,
+      }
+    `
+      )
+      .then((data) => {
+        setCategories(data);
+      });
+  }, []);
+
+  console.log(categories);
+
   return (
     <View className="mt-4">
       {/* <View className="flex flex-row gap-4 justify-between">
@@ -51,13 +68,13 @@ const Categories = () => {
         </TouchableOpacity>
       </View> */}
       <FlatList
-        data={DATA}
+        data={categories}
         showsHorizontalScrollIndicator={false}
         ItemSeparatorComponent={() => <View style={{ width: 5 }} />}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item._id}
         horizontal
         renderItem={({ item }) => (
-          <CategoryCard title={item.title} img={item.img} />
+          <CategoryCard title={item.title} img={urlFor(item.image).url()} />
         )}
       />
     </View>
