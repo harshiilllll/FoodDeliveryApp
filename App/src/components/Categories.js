@@ -57,7 +57,7 @@ const Categories = () => {
       });
   }, []);
 
-  console.log(categories);
+  // console.log(categories);
 
   return (
     <View className="mt-4">

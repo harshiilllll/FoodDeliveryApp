@@ -41,7 +41,7 @@ const HomeScreen = () => {
       });
   }, []);
 
-  console.log(featuredCategories);
+  // console.log(featuredCategories);
 
   return (
     <View style={{ flex: 1 }}>
