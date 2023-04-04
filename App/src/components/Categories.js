@@ -74,7 +74,7 @@ const Categories = () => {
         keyExtractor={(item) => item._id}
         horizontal
         renderItem={({ item }) => (
-          <CategoryCard title={item.title} img={urlFor(item.image).url()} />
+          <CategoryCard title={item.title} img={urlFor(item.image).size(200).url()} />
         )}
       />
     </View>

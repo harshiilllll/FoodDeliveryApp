@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import { Feather } from "@expo/vector-icons";
 import {
   Image,
@@ -12,8 +12,17 @@ import logo from "../../../assets/logo.png";
 import foodBg from "../../../assets/food-bg.jpg";
 import { colors } from "../../global/style";
 import { StatusBar } from "expo-status-bar";
+import { useNavigation } from "@react-navigation/native";
 
-const WelcomeScreen = ({ navigation }) => {
+const WelcomeScreen = () => {
+  const navigation = useNavigation();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerShown: false,
+    });
+  }, []);
+  
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
@@ -42,11 +51,9 @@ const WelcomeScreen = ({ navigation }) => {
           >
             <Text className=" text-white font-semibold text-lg">Log In</Text>
             <Feather name="arrow-right-circle" size={18} color="white" />
-
           </TouchableOpacity>
         </View>
       </ImageBackground>
-
     </View>
   );
 };

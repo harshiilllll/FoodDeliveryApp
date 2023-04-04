@@ -95,12 +95,14 @@ const FeaturedRow = ({ id, title, description }) => {
         horizontal
         renderItem={({ item }) => (
           <RestaurantCard
+            _id={item._id}
             title={item.name}
             short_description={item.short_description}
             rating={item.rating}
+            dishes={item.dishes}
             genre={item.type.title}
             address={item.address}
-            imgUrl={urlFor(item.image).url()}
+            imgUrl={urlFor(item.image).size(720).url()}
             latitude={item.latitude}
             longitude={item.longitude}
           />

@@ -23,9 +23,17 @@ export default {
       validation: (Rule) => Rule.required(),
     },
     {
-        name: 'image',
-        type: 'image',
-        title: 'Image of the dish',
-    }
+      name: 'image',
+      type: 'image',
+      title: 'Image of the dish',
+    },
+    {
+      name: 'dishtype',
+      type: 'string',
+      title: 'Dish Type',
+      validation: (Rule) => Rule.required(),
+      type: 'reference',
+      to: [{type: 'dishtype'}],
+    },
   ],
 }
